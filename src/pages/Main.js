@@ -9,6 +9,7 @@ function Main({ navigation }){
 
   const [currentRegion, setCurrentRegion ] = useState(null)
   const [ devs, setDevs ] = useState([])
+  const [ techs, setTechs ] = useState('')
 
   useEffect(() => {
     async function loadInitialPosition(){
@@ -39,10 +40,10 @@ function Main({ navigation }){
       params: {
         latitude,
         longitude,
-        techs: 'PHP'
+        techs: techs
       }
     });
-    console.log(response.data.devs)
+
     setDevs(response.data.devs)
   }
 
@@ -79,6 +80,8 @@ function Main({ navigation }){
           placeholderTextColor="#999"
           autoCapitalize="words"
           autoCorrect={false}
+          value={techs}
+          onChangeText={setTechs}
         />
         <TouchableOpacity style={styles.loadButton} onPress={loadDevs}>
           <MaterialIcons name="my-location" size={20} color="#fff"/>
